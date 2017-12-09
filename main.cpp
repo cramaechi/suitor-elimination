@@ -1,4 +1,5 @@
-//Program uses a vector to carry out a process of elimination.
+//A program uses a vector to determine which position you should stand in to
+//marry the princess if there are n suitors.
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -23,53 +24,53 @@ void output(vector<int>& suitors);
 int main()
 {
     //Creates a list of suitors for the princess.
-	vector<int> suitors;
+    vector<int> suitors;
 
     input(suitors);
     eliminationProcess(suitors);
     output(suitors);
 
-	return 0;
+    return 0;
 }
 
 void input(vector<int>& suitors)
 {
-    int size;
+    int n;
     cout<<"\nHow many suitors are there for the beautiful princess Eve? ";
-    cin>>size;
+    cin>>n;
     cout<<endl;
 
     //Assign position numbers to each suitor.
-	for (int i = 1; i <= size; i++)
-		suitors.push_back(i);
+    for (int i = 1; i <= n; i++)
+        suitors.push_back(i);
 }
 
 void eliminationProcess(vector<int>& suitors)
 {
     //Keeps track of the number of suitorss encountered so far.
-	int count = 0;
+    int count = 0;
 
     //Run the list of suitorss through the elimination process until only one
     //is left.
-	while (suitors.size() != 1)
-	{
+    while (suitors.size() != 1)
+    {
         //Loop for each suitors and determine if he should be eliminated.
-		for (int j = 0; j < suitors.size(); j++)
-		{
-			count++;
+        for (int j = 0; j < suitors.size(); j++)
+        {
+            count++;
 
             //If suitors is the next third shooter, eliminate him.
-			if (count%3 == 0)
-			{
-				suitors.erase(suitors.begin() + j);
-				
+            if (count%3 == 0)
+            {
+                suitors.erase(suitors.begin() + j);
+
                 //If last suitors has been reached, restart at the beginning.
-				if ((j-1) == suitors.size()-1)
-					continue;
-				count++;
-			}
-		}
-	}
+                if ((j-1) == suitors.size()-1)
+                    continue;
+                count++;
+            }
+        }
+    }
 }
 
 void output(vector<int>& suitors)
